@@ -1,0 +1,20 @@
+{
+  "name": "ledgerly-export-service",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "generate-types": "openapi-typescript ./shared-schema/openapi.yaml -o ./types.ts",
+    "sync-schema": "cd ./shared-schema & git pull & npm run generate-types"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@notionhq/client": "^5.13.0",
+    "openapi-typescript": "^7.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0"
+  }
+}
