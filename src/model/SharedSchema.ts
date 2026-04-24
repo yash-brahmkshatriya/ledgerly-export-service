@@ -1,2 +1,2 @@
-import { components } from "../types";
+import { components } from "../../types";
 export type StructuredExpense = components["schemas"]["StructuredExpense"];

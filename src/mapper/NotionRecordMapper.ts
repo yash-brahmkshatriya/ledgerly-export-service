@@ -1,5 +1,5 @@
 import { StructuredExpense } from "../model/SharedSchema";
-import { NotionRecordMapper } from "../mapper/RecordMapper";
+import { NotionRecordMapper } from "./RecordMapper";
 import { NotionExpenseRecord } from "../model/NotionExpenseRecord";
 
 export const notionRecordMapper: NotionRecordMapper = (

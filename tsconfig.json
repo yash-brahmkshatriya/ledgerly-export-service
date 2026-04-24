@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    /* Base Options */
+    "target": "ESNext" /* Latest ECMAScript features */,
+    "module": "nodenext" /* Standard for Node.js scripts */,
+    "moduleResolution": "nodenext" /* Resolve modules like Node.js does */,
+    "outDir": "./dist" /* Where compiled JS goes */,
+    "rootDir": "./src" /* Where your TS files live */,
+
+    /* Strictness & Safety */
+    "strict": true /* Enable all strict type-checking */,
+    "noImplicitAny": true /* Error on expressions with implied 'any' */,
+    "esModuleInterop": true /* Allows 'import' instead of 'require' for CommonJS */,
+    "skipLibCheck": true /* Skip type checking of declaration files (.d.ts) */,
+    "forceConsistentCasingInFileNames": true /* Ensure imports match file casing */,
+
+    /* Environment */
+    "types": ["node", "jest"] /* Explicitly include Node types for 'process' */
+  },
+  "include": ["src/**/*"] /* Compile everything in src */,
+  "exclude": [
+    "node_modules"
+    // "**/*.test.ts"
+  ]
+}

@@ -51,7 +51,17 @@ const save = async (
     });
     return true;
   } catch (error) {
-    console.error(`Failed to add item with title: ${item?.title}`);
+    const titleProperty = item?.title;
+    // The 'title' property in Notion has a specific structure.
+    // We need to safely access the text content for better logging.
+    const titleText =
+      titleProperty &&
+      "title" in titleProperty &&
+      Array.isArray(titleProperty.title)
+        ? titleProperty.title[0]
+        : "Unknown Title";
+
+    console.error(`Failed to add item with title: '${titleText}'`, error);
     return false;
   }
 };
