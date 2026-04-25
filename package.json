@@ -5,7 +5,9 @@
   "scripts": {
     "generate-types": "openapi-typescript ./shared-schema/openapi.yaml -o ./types.ts",
     "sync-schema": "cd ./shared-schema & git pull & npm run generate-types",
-    "test": "jest"
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
   "keywords": [],
   "author": "",
@@ -16,9 +18,9 @@
     "openapi-typescript": "^7.13.0"
   },
   "devDependencies": {
-    "@types/jest": "^30.0.0",
     "@types/node": "^25.6.0",
-    "jest": "^30.3.0",
-    "ts-jest": "^29.4.9"
+    "@vitest/coverage-v8": "^4.1.5",
+    "vite-tsconfig-paths": "^6.1.1",
+    "vitest": "^4.1.5"
   }
 }

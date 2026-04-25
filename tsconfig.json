@@ -5,7 +5,13 @@
     "module": "nodenext" /* Standard for Node.js scripts */,
     "moduleResolution": "nodenext" /* Resolve modules like Node.js does */,
     "outDir": "./dist" /* Where compiled JS goes */,
-    "rootDir": "./src" /* Where your TS files live */,
+    "rootDir": "./" /* Where your TS files live */,
+
+    /* Path aliases */
+    "paths": {
+      "@/*": ["./src/*"],
+      "@root/*": ["./*"]
+    },
 
     /* Strictness & Safety */
     "strict": true /* Enable all strict type-checking */,
@@ -15,11 +21,19 @@
     "forceConsistentCasingInFileNames": true /* Ensure imports match file casing */,
 
     /* Environment */
-    "types": ["node", "jest"] /* Explicitly include Node types for 'process' */
+    "types": [
+      "node",
+      "vitest/globals"
+    ] /* Explicitly include Node types for 'process' */
   },
-  "include": ["src/**/*"] /* Compile everything in src */,
+  "include": [
+    "src/**/*",
+    "test/**/*",
+    "vitest.config.ts"
+  ] /* Compile everything in src, test and vitest file*/,
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist"
     // "**/*.test.ts"
   ]
 }
