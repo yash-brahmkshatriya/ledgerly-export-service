@@ -55,12 +55,12 @@ export interface components {
              * @description The status of the expense
              * @enum {string}
              */
-            status?: "UNPROCESSED" | "PROCESSED" | "REVIEWED";
+            status?: "UNPROCESSED" | "PROCESSED" | "REVIEWED" | "SKIPPED";
             /**
              * @description Training status for the categorization
              * @enum {string}
              */
-            trainingStatus?: "PEDNING" | "NOT_REQUIRED" | "TRAINED";
+            trainingStatus?: "PENDING" | "NOT_REQUIRED" | "TRAINED";
         };
         /** @description Represents how the expense is split among participants. The keys are user identifiers and the values are the amounts owed. */
         Split: {

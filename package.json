@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "generate-types": "openapi-typescript ./shared-schema/openapi.yaml -o ./types.ts",
-    "sync-schema": "cd ./shared-schema & git pull & npm run generate-types",
+    "sync-schema": "git -C ./shared-schema pull && npm run generate-types",
     "test": "vitest",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage"
