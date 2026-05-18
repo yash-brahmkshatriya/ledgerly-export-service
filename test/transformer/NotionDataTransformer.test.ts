@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
-import { notionExportPreProcessor } from "@/transformer/NotionDataTransformer";
-import { NotionExpenseRecord } from "@/model/NotionExpenseRecord";
+import { notionExportPreProcessor } from "#/transformer/NotionDataTransformer.js";
+import { NotionExpenseRecord } from "#/model/NotionExpenseRecord.js";
 
 describe("notionExportPreProcessor", () => {
   it("should return an empty array if input items array is empty", () => {

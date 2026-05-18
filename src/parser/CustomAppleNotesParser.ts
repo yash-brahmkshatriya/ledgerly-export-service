@@ -1,6 +1,6 @@
 import * as fs from "fs";
-import { StructuredExpense, Split, Status } from "@/model/SharedSchema";
-import { isEmpty } from "@/utils/common";
+import { StructuredExpense, Split, Status } from "#/model/SharedSchema.js";
+import { isEmpty } from "#/utils/common.js";
 import { cwd } from "process";
 
 // --- Main Runner ---
@@ -10,12 +10,11 @@ import { cwd } from "process";
  */
 export const parseExpenses = (
   rawInput: string,
-  optionalOutputPath?: string,
   myShortName: string = "y",
+  optionalOutputPath?: string,
 ): StructuredExpense[] => {
-  const outputPath = optionalOutputPath ?? cwd();
-  const lines = fs
-    .readFileSync(rawInput, "utf8")
+  const outputPath = optionalOutputPath ?? `${cwd()}/io`;
+  const lines = rawInput
     .split("\n")
     .map((l) => l.trim())
     .filter((l) => l.length > 0);
@@ -35,14 +34,14 @@ export const parseExpenses = (
       if (parsedExpense != null) {
         acc.push(parsedExpense);
       } else {
-        skippedExpenses.push(`${lastDate} :=: ${line}`);
+        skippedExpenses.push(`${lastDate} -> ${line}`);
       }
     }
     return acc;
   }, []);
 
   const outputFileName = `output.json`;
-  const skippedFileName = `skipped.json`;
+  const skippedFileName = `skipped.txt`;
 
   console.log(`Saving parsed expenses at ${outputPath}/${outputFileName}`);
   fs.writeFileSync(

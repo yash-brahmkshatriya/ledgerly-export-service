@@ -2,12 +2,21 @@
   "name": "ledgerly-export-service",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
+  "imports": {
+    "#/*": {
+      "types": "./src/*",
+      "default": "./dist/src/*"
+    }
+  },
   "scripts": {
     "generate-types": "openapi-typescript ./shared-schema/openapi.yaml -o ./types.ts",
     "sync-schema": "git -C ./shared-schema pull && npm run generate-types",
     "test": "vitest",
     "test:run": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "tsc": "npx tsc",
+    "parse:custom": "node dist/src/parseAppleNotesIndex.js"
   },
   "keywords": [],
   "author": "",

@@ -1,9 +1,9 @@
 import { CreatePageParameters } from "@notionhq/client";
-import { NotionExpenseRecord } from "../model/NotionExpenseRecord";
-import { notionExportPreProcessor } from "../transformer/NotionDataTransformer";
-import { StructuredExpense } from "../model/SharedSchema";
-import { notionRecordMapper } from "../mapper/NotionRecordMapper";
-import { notionClient } from "../client/NotionClient";
+import { NotionExpenseRecord } from "#/model/NotionExpenseRecord.js";
+import { notionExportPreProcessor } from "#/transformer/NotionDataTransformer.js";
+import { StructuredExpense } from "#/model/SharedSchema.js";
+import { notionRecordMapper } from "#/mapper/NotionRecordMapper.js";
+import { notionClient } from "#/client/NotionClient.js";
 
 const DATABASE_ID = "TEST";
 

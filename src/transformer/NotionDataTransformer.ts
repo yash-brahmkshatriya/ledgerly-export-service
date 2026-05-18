@@ -2,8 +2,8 @@ import {
   DEFAULT_NOTION_SCHEMA,
   NotionSchemaMap,
   NotionTargetFieldTypes,
-} from "../constants/NotionSchemaMap";
-import { NotionExpenseRecord } from "../model/NotionExpenseRecord";
+} from "#/constants/NotionSchemaMap.js";
+import { NotionExpenseRecord } from "#/model/NotionExpenseRecord.js";
 
 type NotionSchemaPredictor = (
   record: NotionExpenseRecord,

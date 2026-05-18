@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { parseExpenses } from "@/parser/CustomAppleNotesParser";
+import { parseExpenses } from "#/parser/CustomAppleNotesParser.js";
 
 describe("parseExpenses - Temporal Logic", () => {
   it("assigns date header to subsequent entries", () => {

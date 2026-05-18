@@ -9,8 +9,8 @@
 
     /* Path aliases */
     "paths": {
-      "@/*": ["./src/*"],
-      "@root/*": ["./*"]
+      "#/*": ["./src/*"],
+      "#root/*": ["./*"]
     },
 
     /* Strictness & Safety */

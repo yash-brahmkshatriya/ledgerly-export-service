@@ -1,13 +1,13 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { notionClient } from "@/client/NotionClient";
-import { notionRecordMapper } from "@/mapper/NotionRecordMapper";
-import { notionExportPreProcessor } from "@/transformer/NotionDataTransformer";
-import { components } from "@root/types";
-import { notionExporter } from "@/export/NotionExporter";
+import { notionClient } from "#/client/NotionClient.js";
+import { notionRecordMapper } from "#/mapper/NotionRecordMapper.js";
+import { notionExportPreProcessor } from "#/transformer/NotionDataTransformer.js";
+import { components } from "#root/types.js";
+import { notionExporter } from "#/export/NotionExporter.js";
 
 type StructuredExpense = components["schemas"]["StructuredExpense"];
 
-vi.mock("@/client/NotionClient", () => ({
+vi.mock("#/client/NotionClient", () => ({
   notionClient: {
     pages: {
       create: vi.fn(),
@@ -15,8 +15,8 @@ vi.mock("@/client/NotionClient", () => ({
   },
 }));
 
-vi.mock("@/mapper/NotionRecordMapper");
-vi.mock("@/transformer/NotionDataTransformer");
+vi.mock("#/mapper/NotionRecordMapper");
+vi.mock("#/transformer/NotionDataTransformer");
 
 const mockedNotionClient = vi.mocked(notionClient);
 const mockedNotionRecordMapper = vi.mocked(notionRecordMapper);

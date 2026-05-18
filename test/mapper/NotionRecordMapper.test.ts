@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeAll, afterAll } from "vitest";
-import { notionRecordMapper } from "@/mapper/NotionRecordMapper";
-import { components } from "@root/types";
+import { notionRecordMapper } from "#/mapper/NotionRecordMapper.js";
+import { components } from "#root/types.js";
 
 type StructuredExpense = components["schemas"]["StructuredExpense"];
 
