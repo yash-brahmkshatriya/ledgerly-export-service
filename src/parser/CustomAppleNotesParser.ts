@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import { StructuredExpense, Split, Status } from "@/model/SharedSchema";
 import { isEmpty } from "@/utils/common";
+import { cwd } from "process";
 
 // --- Main Runner ---
 
@@ -9,14 +10,19 @@ import { isEmpty } from "@/utils/common";
  */
 export const parseExpenses = (
   rawInput: string,
+  optionalOutputPath?: string,
   myShortName: string = "y",
-  outputPath?: string,
 ): StructuredExpense[] => {
-  const lines = rawInput
+  const outputPath = optionalOutputPath ?? cwd();
+  const lines = fs
+    .readFileSync(rawInput, "utf8")
     .split("\n")
     .map((l) => l.trim())
     .filter((l) => l.length > 0);
+
   let lastDate = "";
+
+  const skippedExpenses: string[] = [];
 
   const results = lines.reduce((acc: StructuredExpense[], line) => {
     if (isDateLine(line)) {
@@ -28,14 +34,27 @@ export const parseExpenses = (
       const parsedExpense = parseLine(line, lastDate, myShortName);
       if (parsedExpense != null) {
         acc.push(parsedExpense);
+      } else {
+        skippedExpenses.push(`${lastDate} :=: ${line}`);
       }
     }
     return acc;
   }, []);
 
-  if (outputPath) {
-    fs.writeFileSync(outputPath, JSON.stringify(results, null, 2));
-  }
+  const outputFileName = `output.json`;
+  const skippedFileName = `skipped.json`;
+
+  console.log(`Saving parsed expenses at ${outputPath}/${outputFileName}`);
+  fs.writeFileSync(
+    `${outputPath}/${outputFileName}`,
+    JSON.stringify(results, null, 2),
+  );
+
+  console.log(`Saving skipped expenses at ${outputPath}/${skippedFileName}`);
+  fs.writeFileSync(
+    `${outputPath}/${skippedFileName}`,
+    skippedExpenses.join("\n"),
+  );
 
   return results;
 };
@@ -143,7 +162,7 @@ const validate = (parts: string[]): boolean => {
 };
 
 // --- Example Usage ---
-
+/*
 const rawData = `
 24 Apr
 145 - Movie - y - y - movie1 - Entertainment
@@ -153,4 +172,5 @@ const rawData = `
 `;
 
 const data = parseExpenses(rawData, "y", "output.json");
-console.log(data);
+
+*/
