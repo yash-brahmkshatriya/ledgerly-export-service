@@ -1,7 +1,8 @@
 import * as fs from "fs";
 import { parseExpenses } from "#/parser/CustomAppleNotesParser.js";
-import { cwd } from "node:process";
+import { getIODirPath } from "#/utils/io.js";
 
-const path = `${cwd()}/io/input.txt`;
-const outputPath = `${cwd()}/io`;
+const path = `${getIODirPath()}/input.txt`;
+const outputPath = `${getIODirPath()}`;
+
 parseExpenses(fs.readFileSync(path, "utf8"), "y", outputPath);

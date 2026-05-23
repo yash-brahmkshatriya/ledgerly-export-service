@@ -5,7 +5,7 @@ import { StructuredExpense } from "#/model/SharedSchema.js";
 import { notionRecordMapper } from "#/mapper/NotionRecordMapper.js";
 import { notionClient } from "#/client/NotionClient.js";
 
-const DATABASE_ID = "TEST";
+const DATABASE_ID = process.env.NOTION_DATABASE_ID;
 
 export const notionExporter = (items: StructuredExpense[]): void => {
   const itemsAsNotionRecord: NotionExpenseRecord[] = items.map((item) =>
@@ -24,11 +24,17 @@ interface SaveToNotionResult {
 }
 
 const dumpToNotion = async (items: object[]): Promise<SaveToNotionResult> => {
+  if (!DATABASE_ID) {
+    throw new Error(`Invalid Notion Database ID=${DATABASE_ID}`);
+  }
   let success = 0,
     error = 0;
 
   for (const item of items) {
-    const done = await save(item as CreatePageParameters["properties"]);
+    const done = await save(
+      item as CreatePageParameters["properties"],
+      DATABASE_ID,
+    );
     if (done) success++;
     else error++;
   }
@@ -41,11 +47,12 @@ const dumpToNotion = async (items: object[]): Promise<SaveToNotionResult> => {
 
 const save = async (
   item: CreatePageParameters["properties"],
+  databaseId: string,
 ): Promise<boolean> => {
   try {
     await notionClient.pages.create({
       parent: {
-        database_id: DATABASE_ID,
+        database_id: databaseId,
       },
       properties: item,
     });

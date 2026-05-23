@@ -14,6 +14,7 @@ type NotionDate = { start: string; end?: string; time_zone?: string };
 export const notionExportPreProcessor: (
   items: NotionExpenseRecord[],
 ) => object[] = (items) => {
+  console.log("Notion export pre-processing started");
   if (items.length === 0) return [];
   const notionSchemaPrediction = hardcodedNotionSchemaPredictor(items[0]);
   return items.map((item) => {

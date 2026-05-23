@@ -15,8 +15,9 @@
     "test": "vitest",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "tsc": "npx tsc",
-    "parse:custom": "node dist/src/parseAppleNotesIndex.js"
+    "build": "npx tsc",
+    "parse:custom:local": "node  --env-file=configuration/.env.local dist/src/parseAppleNotesIndex.js",
+    "export:custom:local": "node  --env-file=configuration/.env.local dist/src/index.js"
   },
   "keywords": [],
   "author": "",
