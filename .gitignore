@@ -2,3 +2,4 @@ node_modules/
 io/
 dist/
 configuration/.env.local
+configuration/*.local
